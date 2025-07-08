@@ -63,7 +63,7 @@ function Login() {
           {/* <!-- Welcome Message --> */}
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back! 👋</h2>
-            <p className="text-gray-600">Login to your account for explore</p>
+            <p className="text-gray-600">Login to your account to explore more</p>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col space-y-6 w-full">
