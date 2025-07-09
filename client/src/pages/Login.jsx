@@ -1,9 +1,15 @@
+import Navbar from '../components/Navbar.jsx';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 import DotGrid from '../BackgroundAnimations/DotGrid.jsx';
+
 
 function Login() {
   const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
+
 
   const [formData, setFormData] = useState({
     email: '',
@@ -34,13 +40,16 @@ function Login() {
       }
 
       localStorage.setItem('token', data.token);
+      setUser({ token: data.token });
       navigate('/');
     } catch (err) {
       setError('Something went wrong');
     }
   };
 
-  return (  
+  return (
+    <>
+    <Navbar />
     <div className="w-screen h-screen bg-gray-100 relative overflow-hidden flex items-center justify-center">
       {/* Fullscreen animated background */}
       <div className="absolute inset-0 z-0">
@@ -123,7 +132,11 @@ function Login() {
           <div className="mt-6 text-center">
             <p className="text-gray-600">
               Don't have an account?
-              <button className="text-blue-600 hover:text-blue-800 font-semibold ml-1 transition-colors">Create Account</button>
+              <Link 
+              to="/register" 
+              className="text-blue-600 hover:text-blue-800 font-semibold ml-1 transition-colors">
+                Create Account
+              </Link>
             </p>
           </div>
 
@@ -131,6 +144,7 @@ function Login() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

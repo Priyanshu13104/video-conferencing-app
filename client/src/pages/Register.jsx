@@ -1,5 +1,6 @@
+import Navbar from '../components/Navbar.jsx';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import DotGrid from '../BackgroundAnimations/DotGrid.jsx';
 
 function Register() {
@@ -42,6 +43,8 @@ function Register() {
   };
 
   return (
+    <>
+    <Navbar />
     <div className='w-screen h-screen bg-gray-100 relative overflow-hidden flex items-center justify-center'>
       <div className="absolute inset-0 z-0">
         <DotGrid
@@ -80,7 +83,11 @@ function Register() {
             <div className="mt-6 text-center">
               <p className="text-gray-600">
                 Already have an account?
-                <button className="text-blue-600 hover:text-blue-800 font-semibold ml-1 transition-colors">Login</button>
+                <Link
+                to="/login" 
+                className="text-blue-600 hover:text-blue-800 font-semibold ml-1 transition-colors">
+                  Login
+                </Link>
               </p>
             </div>
           </form>
@@ -89,6 +96,7 @@ function Register() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
