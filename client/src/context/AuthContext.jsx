@@ -4,14 +4,17 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true); // ✅ Add loading state
 
-  // Check if token exists on load
   useEffect(() => {
     const token = localStorage.getItem('token');
+
     if (token) {
-      // In real apps, decode JWT to get user info
+      // In real apps, decode JWT and verify with backend here
       setUser({ token });
     }
+
+    setLoading(false); // ✅ done checking
   }, []);
 
   const logout = () => {
@@ -20,7 +23,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, logout }}>
+    <AuthContext.Provider value={{ user, setUser, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
